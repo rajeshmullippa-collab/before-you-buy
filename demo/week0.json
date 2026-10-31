@@ -1,0 +1,38 @@
+{
+ "id": "demo-week0",
+ "label": "Demo \u00b7 Week 0",
+ "date": "Sat 2026-09-05 2:30 PM IST (UTC+05:30)",
+ "demo": true,
+ "photo": "assets/face_week0.jpg",
+ "scores": {
+  "eye_bag": 76,
+  "oiliness": 74,
+  "texture": 80,
+  "pore": 73,
+  "firmness": 80,
+  "dark_circle_v2": 66,
+  "age_spot": 79,
+  "radiance": 74,
+  "redness": 81,
+  "wrinkle": 88,
+  "acne": 74,
+  "moisture": 71
+ },
+ "masks": {
+  "eye_bag": "demo/masks/week0_eye_bag.jpg",
+  "oiliness": "demo/masks/week0_oiliness.jpg",
+  "texture": "demo/masks/week0_texture.jpg",
+  "pore": "demo/masks/week0_pore.jpg",
+  "firmness": "demo/masks/week0_firmness.jpg",
+  "dark_circle_v2": "demo/masks/week0_dark_circle_v2.jpg",
+  "age_spot": "demo/masks/week0_age_spot.jpg",
+  "radiance": "demo/masks/week0_radiance.jpg",
+  "redness": "demo/masks/week0_redness.jpg",
+  "wrinkle": "demo/masks/week0_wrinkle.jpg",
+  "acne": "demo/masks/week0_acne.jpg",
+  "moisture": "demo/masks/week0_moisture.jpg"
+ },
+ "source": "Real YouCam AI Skin Analysis v2.1 result (SD, format=json, enable_mask_overlay) captured 2026-10-31T22:11:47.319819Z",
+ "upload_path": "upload",
+ "task_id": "Bapgy-M-OhW3azATamVSj2zPPRyXgsEEkdDc_0ChC6_1UeumGzRJoOJ80KOiYJBpV8vjSsGp_00cofvLX8kY0w"
+}
