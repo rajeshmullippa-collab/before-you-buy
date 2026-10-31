@@ -1,7 +1,7 @@
 {
  "id": "demo-week0",
  "label": "Demo \u00b7 Week 0",
- "date": "Sat 2026-09-05 2:30 PM IST (UTC+05:30)",
+ "date": "2026-09-05T14:30:00+05:30",
  "demo": true,
  "photo": "assets/face_week0.jpg",
  "scores": {
