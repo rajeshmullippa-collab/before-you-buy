@@ -1,0 +1,124 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Before You Buy · skin-AI shopping companion</title>
+<meta name="description" content="Scan your skin with the YouCam AI Skin Analysis API, then check any product's ingredient list against your real top concerns before you buy.">
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+<header class="top">
+  <div class="brand"><span class="logo">B</span><span>Before You Buy</span></div>
+  <nav>
+    <a href="#scan">Scan</a><a href="#profile">My skin</a><a href="#check">Check a product</a><a href="#progress">Progress</a>
+  </nav>
+</header>
+
+<section class="hero">
+  <div class="hero-text">
+    <p class="eyebrow">Skin AI × smarter shopping</p>
+    <h1>Know if a product fits <em>your</em> skin before you buy it.</h1>
+    <p class="lede">Take a selfie. The <strong>YouCam AI Skin Analysis API</strong> scores 12 skin concerns. Paste any product's ingredient list and see, in seconds, whether its actives actually target what your skin needs, or quietly work against it.</p>
+    <div class="cta">
+      <button class="btn primary" id="tryDemo">Try the free demo</button>
+      <a class="btn ghost" href="#scan" id="ownScan">Scan my own selfie</a>
+    </div>
+    <p class="fine">Demo uses real YouCam results recorded from an AI-generated face, so it costs nothing. Your own scans use your YouCam API key and stay on your device.</p>
+  </div>
+  <div class="hero-card">
+    <img src="assets/face_week0.jpg" alt="Sample selfie used in the demo">
+    <div class="pill">Powered by YouCam AI Skin Analysis</div>
+  </div>
+</section>
+
+<main>
+<section id="scan" class="panel">
+  <div class="panel-head"><span class="step">1</span><div><h2>Scan</h2><p>Pick a demo scan, or analyze your own selfie with your YouCam key.</p></div></div>
+  <div class="grid2">
+    <div class="card">
+      <h3>Demo scans <span class="tag">free</span></h3>
+      <p class="muted">Two real YouCam analyses of the same AI-generated person, eight weeks apart.</p>
+      <div class="demo-pick">
+        <button class="demo-btn" data-demo="week0"><img src="assets/face_week0.jpg" alt=""><span>Week 0</span></button>
+        <button class="demo-btn" data-demo="week8"><img src="assets/face_week8.jpg" alt=""><span>Week 8</span></button>
+      </div>
+    </div>
+    <div class="card">
+      <h3>Your selfie</h3>
+      <p class="muted">Front-facing, no glasses, even light, face filling most of the frame (at least 480 px on the short side).</p>
+      <label class="field">YouCam API key
+        <input id="apiKey" type="password" autocomplete="off" placeholder="Paste your key from the YouCam API console">
+      </label>
+      <label class="check"><input type="checkbox" id="rememberKey"> Remember on this device</label>
+      <label class="drop" id="drop">
+        <input type="file" id="file" accept="image/jpeg,image/png" hidden>
+        <span id="dropText">Choose or drop a selfie (JPG/PNG)</span>
+      </label>
+      <button class="btn primary wide" id="analyze" disabled>Analyze my skin</button>
+      <p class="status" id="status" role="status"></p>
+      <p class="fine">Calls go straight from your browser to YouCam (it allows cross-origin requests). No server of ours ever sees your key or photo. Each scan uses about 14 YouCam units.</p>
+    </div>
+  </div>
+</section>
+
+<section id="profile" class="panel">
+  <div class="panel-head"><span class="step">2</span><div><h2>My skin</h2><p id="profileSub">Run a scan to see your profile.</p></div></div>
+  <div class="profile empty" id="profileBody">
+    <div class="viewer card">
+      <div class="imgwrap"><img id="viewerImg" alt="Scan photo"></div>
+      <div class="chips" id="maskChips"></div>
+      <p class="fine" id="viewerNote">Tap a concern to see where YouCam found it.</p>
+    </div>
+    <div class="card">
+      <div class="overall"><div class="ring" id="overallRing"><span id="overallNum">–</span></div>
+        <div><h3>Overall skin score</h3><p class="muted" id="topLine"></p></div></div>
+      <ul class="bars" id="bars"></ul>
+      <p class="fine">Scores are YouCam ui_scores (1–100, higher is healthier). Concerns are ranked by how far below 100 they sit.</p>
+    </div>
+  </div>
+</section>
+
+<section id="check" class="panel">
+  <div class="panel-head"><span class="step">3</span><div><h2>Check a product</h2><p>Paste the INCI ingredient list from any product page or the back of the box.</p></div></div>
+  <div class="grid2">
+    <div class="card">
+      <div class="chips" id="sampleChips"></div>
+      <label class="field">Product name (optional)<input id="prodName" placeholder="e.g. Night serum I'm eyeing"></label>
+      <label class="field">Ingredients<textarea id="ingredients" rows="7" placeholder="Water, Glycerin, Niacinamide, Salicylic Acid, …"></textarea></label>
+      <button class="btn primary wide" id="checkBtn">Check against my skin</button>
+      <p class="status" id="checkStatus"></p>
+    </div>
+    <div class="card result empty" id="result">
+      <p class="muted">Your match score appears here.</p>
+    </div>
+  </div>
+  <div class="card shortlist" id="shortlistCard" hidden>
+    <h3>Your shortlist, ranked for your skin</h3>
+    <ol id="shortlist"></ol>
+  </div>
+</section>
+
+<section id="progress" class="panel">
+  <div class="panel-head"><span class="step">4</span><div><h2>Progress</h2><p>Every scan is saved on this device. Compare any two to see what your routine changed.</p></div></div>
+  <div class="grid2">
+    <div class="card">
+      <h3>Saved scans</h3>
+      <ul class="scans" id="scanList"></ul>
+      <div class="row">
+        <label class="field">From<select id="cmpA"></select></label>
+        <label class="field">To<select id="cmpB"></select></label>
+      </div>
+    </div>
+    <div class="card" id="compare"><p class="muted">Save two scans to compare them.</p></div>
+  </div>
+</section>
+</main>
+
+<footer>
+  <p>Before You Buy uses the <a href="https://docs.perfectcorp.com/reference/ai_skin_analysis" target="_blank" rel="noopener">YouCam AI Skin Analysis API</a> by Perfect Corp. Ingredient guidance is general cosmetic information, not medical advice.</p>
+  <p>Built by Hark, an AI agent, under the direction of Rajesh Mullippa · <a href="https://github.com/rajeshmullippa-collab/before-you-buy" target="_blank" rel="noopener">Source (MIT)</a></p>
+</footer>
+<script type="module" src="js/app.js"></script>
+</body>
+</html>
